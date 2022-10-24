@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-fanout-example
+spec:
+  rules:
+  - host: hello-world.info
+    http:
+      paths:
+      - path: /orders
+        pathType: Prefix
+        backend:
+          service:
+            name: springboot-k8s-svc
+            port:
+              number: 8080
